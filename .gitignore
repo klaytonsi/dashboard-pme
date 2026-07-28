@@ -1,0 +1,18 @@
+# Credenciais - NUNCA versionar
+credentials.json
+*.json
+!package.json
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Dados sensíveis
+data/*.csv
+data/*.xlsx
+
+# Sistema
+.DS_Store
