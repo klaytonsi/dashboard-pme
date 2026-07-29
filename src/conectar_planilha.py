@@ -1,6 +1,7 @@
 """
 Modulo de conexao com a planilha Google Sheets.
-Le as credenciais a partir de variavel de ambiente, nunca hardcoded.
+Funciona localmente (credentials.json) e no Streamlit Community Cloud
+(st.secrets), sem nunca expor credenciais no codigo.
 """
 import os
 import gspread
@@ -16,12 +17,26 @@ SCOPES = [
 ]
 
 
+def _obter_credenciais():
+    """Usa st.secrets na nuvem, ou arquivo local em desenvolvimento."""
+    try:
+        import streamlit as st
+        if "gcp_service_account" in st.secrets:
+            return Credentials.from_service_account_info(
+                dict(st.secrets["gcp_service_account"]), scopes=SCOPES
+            )
+    except Exception:
+        pass
+
+    caminho_credenciais = os.getenv("GOOGLE_SHEETS_CREDENTIALS_PATH", "credentials.json")
+    return Credentials.from_service_account_file(caminho_credenciais, scopes=SCOPES)
+
+
 def carregar_dados_vendas():
     """Conecta na planilha e retorna os dados de vendas como DataFrame."""
-    caminho_credenciais = os.getenv("GOOGLE_SHEETS_CREDENTIALS_PATH", "credentials.json")
     nome_planilha = os.getenv("GOOGLE_SHEET_NAME", "vendas_dashboard")
 
-    creds = Credentials.from_service_account_file(caminho_credenciais, scopes=SCOPES)
+    creds = _obter_credenciais()
     client = gspread.authorize(creds)
 
     planilha = client.open(nome_planilha)
