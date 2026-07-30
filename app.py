@@ -59,3 +59,16 @@ with col_b:
 st.divider()
 st.subheader("Dados detalhados")
 st.dataframe(df, use_container_width=True)
+
+st.divider()
+from src.gerar_pdf import gerar_relatorio_pdf
+
+if st.button("📄 Gerar Relatorio em PDF"):
+    with st.spinner("Gerando PDF..."):
+        pdf_bytes = gerar_relatorio_pdf(df, kpis)
+    st.download_button(
+        label="⬇️ Baixar Relatorio PDF",
+        data=pdf_bytes,
+        file_name="relatorio_financeiro.pdf",
+        mime="application/pdf",
+    )
