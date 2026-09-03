@@ -46,8 +46,6 @@ Notebook no Kaggle: https://www.kaggle.com/code/klaytonvieira/dashboard-financei
 
 ## Rodando localmente
 
-Este projeto foi desenvolvido inteiramente pelo celular (Android, via Termux), sem depender de computador.
-
 Clone o repositorio e instale as dependencias:
 
 pip install -r requirements.txt
