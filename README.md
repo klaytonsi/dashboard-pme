@@ -13,7 +13,7 @@ O sistema se conecta a uma planilha de vendas (Google Sheets) ja usada pela empr
 
 ## Demonstracao
 
-Dashboard ao vivo: https://dashboard-pme-yejyp3hjqrtsyfm3n6eixn.streamlit.app/
+Dashboard ao vivo: https://dashboard-pme-jj5uwk9qcxh4dwohxtoa9y.streamlit.app/
 Notebook no Kaggle: https://www.kaggle.com/code/klaytonvieira/dashboard-financeiro-para-pmes-analis
 
 ## Tecnologias utilizadas
